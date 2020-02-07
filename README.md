@@ -12,9 +12,6 @@
 
 # main-home for setting home options
 
-# proxy_pass http://stag.bomayshirts.com;
-# proxy_pass http://server_name;
-
 # For ssl issue
 > proxy_ssl_server_name on;
 
