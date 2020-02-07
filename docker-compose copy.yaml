@@ -1,0 +1,23 @@
+version: '3.3'
+
+services:
+  nginx-proxy:
+    container_name: nginx-proxy
+    hostname: nginx
+    image: nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - common-config-volume:/etc/nginx/conf.d:ro
+  node-config:
+    container_name: node-config
+    hostname: node
+    image: node
+    ports:
+      - 9000:3000
+    volumes: 
+      - common-config-volume:/app/nginx-config
+volumes: 
+  common-config-volume:
+  

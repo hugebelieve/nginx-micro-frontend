@@ -1,0 +1,1 @@
+ echo "Warning: unable to determine DNS resolvers for nginx"

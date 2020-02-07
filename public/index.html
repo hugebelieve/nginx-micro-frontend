@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>BSC Route Configurator</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  <link href="./stylesheets/style.css" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="#">BSC Route Configurator</a>
+        <button id="addProxy" class="navbar-toggler" type="button">
+          Add Proxy
+        </button>
+      </div>
+    </nav>
+  </header>
+  
+  <div class="accordion" id="accordion">
+
+
+  </div>
+
+
+  <template id="cardTemplate">
+    <div class="card">
+      <div class="card-header" id="cardHeaderId">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" 
+            data-toggle="collapse" data-target="#cardId" 
+            aria-expanded="false" aria-controls="cardId">
+            /cardId
+          </button>
+          <button type="button" name="cardRemove" class="btn btn-danger pull-right" style="position: absolute;right: 10px;">Remove</button>
+          <button type="button" name="cardSave" count="1" class="btn btn-success pull-right" style="position: absolute;right: 100px;">Save/Update</button>
+        </h2>
+      </div>
+      
+      <div id="cardId" class="collapse" aria-labelledby="cardHeaderId" data-parent="#accordion">
+        <div class="card-body">
+          <div class="container">
+            <div class="row">
+              <div class="form-group col-lg-6 col-md-12">
+                <label>Enter subpath you want the proxy of</label>
+                <input type="text" class="form-control" name="subpath" placeholder="Enter subpath (no special character)">
+              </div>
+            </div>
+            <hr>
+            <div class="row proxyTypeClass">
+              <div class="form-group col-lg-3 col-md-6">
+                <label>Select type of proxy you need</label>
+                <select class="form-control proxyType" name="proxyType" id="proxyType">
+                  <option value="ip" selected>Server with IP address</option>
+                  <option value="domain">Proxy to a domain</option>
+                  <option value="subpath">Proxy to a self subpath</option>
+                </select>
+              </div>
+            </div>
+            <hr>
+
+            <div class="row serverTypeClass">
+              <div class="server-fields form-group col-lg-12 col-md-12 row">
+                <input type="text" index="0" class="form-control col-8" name="host" placeholder="Enter ip with port">
+                <button type="button" index="0" name="remove" class="remove btn btn-danger col-1 offset-1 hide">x</button>
+              </div>
+              <button type="button" count="1" class="add-more btn btn-success pull-right col-12">Add Server (load balancer auto applied)</button>
+            </div>
+
+            <div class="row hide domainTypeClass">
+              <div class="form-group col-lg-3 col-md-6">
+                <select class="form-control" name="schema">
+                  <option value="https">https</option>
+                  <option value="http">http</option>
+                </select>
+              </div>
+              <div class="form-group col-lg-6 col-md-12">
+                <input type="text" class="form-control" name="domain" placeholder="Enter domain name">
+              </div>
+            </div>
+
+            <div class="row hide subpathTypeClass">
+              <div class="form-group col-lg-6 col-md-12">
+                <input type="text" class="form-control" name="proxySubpath" placeholder="Enter the proxy subpath">
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="server-fields">
+    <div class="server-fields form-group col-lg-12 col-md-12 row">
+      <input type="text" index="0" class="form-control col-8" name="host" placeholder="Enter ip with port">
+      <button type="button" index="0" name="remove" class="remove btn btn-danger col-1 offset-1 hide">x</button>
+    </div>
+  </template>
+  
+<script src="./javascripts/serverCall.js"></script>
+<script src="./javascripts/main.js"></script>
+<script src="./javascripts/handleCard.js"></script>
+</body>
+</html>

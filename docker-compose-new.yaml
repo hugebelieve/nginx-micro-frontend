@@ -1,0 +1,39 @@
+version: '3.3'
+
+services:
+  nginx-proxy:
+    container_name: nginx-proxy
+    hostname: nginx-proxy
+    image: nginx-proxy
+    build: nginx-docker/.
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - common-config-volume:/etc/nginx/conf.d
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.5
+  node-config:
+    container_name: node-config
+    hostname: node-config
+    image: node-config
+    build: .
+    ports:
+      - 8000:8000
+    volumes: 
+      - common-config-volume:/nginx-config
+    depends_on:
+     - nginx-proxy
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.6
+volumes: 
+  common-config-volume:
+networks:
+  vpcbr:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.5.0.0/16
+  

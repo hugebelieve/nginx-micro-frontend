@@ -1,0 +1,14 @@
+version: '3.3'
+
+services:
+  nginx-proxy:
+    container_name: nginx-proxy
+    hostname: nginx-proxy
+    image: nginx-proxy
+    build: nginx-docker/.
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /home/bombay-shirts/Documents/enigma-nginx/nginx-config:/etc/nginx/conf.d
+  
